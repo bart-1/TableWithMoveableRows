@@ -1,20 +1,34 @@
 {
   "name": "react-ts",
-  "version": "0.0.0",
   "private": true,
-  "dependencies": {
-    "@types/react": "^18.0.8",
-    "@types/react-dom": "^18.0.2",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0"
-  },
+  "version": "1.0",
+  "type": "module",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "tailwind": "npx tailwindcss -i ./src/index.css -o ./public/assets/output.css --watch",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "tab:dev": "ttab -t 'dev' npm run dev",
+    "tab:tailwind": "ttab -t 'tailwind' npm run tailwind",
+    "start": "run-s tab:dev tab:tailwind"
+  },
+  "dependencies": {
+    "npm-run-all": "^4.1.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-query": "^3.39.3",
+    "ttab": "^0.8.0",
+    "zustand": "^4.3.7"
   },
   "devDependencies": {
-    "react-scripts": "latest"
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.0.0",
+    "autoprefixer": "^10.4.15",
+    "postcss": "^8.4.28",
+    "postcss-import": "^15.0.0",
+    "tailwindcss": "^3.3.3",
+    "typescript": "^4.6.4",
+    "vite": "^3.0.0"
   }
 }

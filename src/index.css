@@ -1,0 +1,35 @@
+h1, p, table {
+  font-family: Lato;
+}
+
+table, th, td {
+border: 1px solid black;
+font-size: small;
+text-align: center;
+}
+
+th {
+  background-color: black;
+  color: white;
+}
+
+td, th {
+  padding: 10px;
+}
+
+tr:nth-child(even){
+background-color: cornsilk;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-500;
+  }
+  html {
+	font-size: 16px;
+}
+}
