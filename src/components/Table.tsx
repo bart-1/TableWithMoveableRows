@@ -1,4 +1,6 @@
 import { MouseEvent, useEffect, useState } from "react";
+import Button from "./Button";
+import Cell from "./Cell";
 
 /**
  *
@@ -32,9 +34,7 @@ const Table = <T extends TableRow>({ initialData, data }: TableProps<T>) => {
   const tabTitle = Object.keys(data[0]).map((element, index) => {
     if (element !== "id") {
       return (
-        <th key={index} className="p-3">
-          {element}
-        </th>
+        <Cell tag="th" content={element} key={index} style="p-3" />
       );
     }
   });
@@ -89,25 +89,25 @@ const Table = <T extends TableRow>({ initialData, data }: TableProps<T>) => {
 
   const tabContent = list.map((element, index) => {
     return (
-      <tr key={"content" + index} className="p-3">
-        <td className="p-3">
-          <button onClick={(e) => handleGrabButton(e, element.id)} id="up">
-            ^
-          </button>
-          <button
-            onClick={(e) => handleGrabButton(e, element.id)}
+      <tr key={"content" + index} className="p-3 odd:bg-slate-300 even:bg-slate-600 ">
+        <Cell tag="td" style="p-3">
+          <Button
+            action={(e) => handleGrabButton(e, element.id)}
+            style=" border-2 border-gray-700 bg-gray-700 text-gray-400 rounded-full w-5 h-5"
+            name="^"
+            id="up"
+          />
+          <Button
+            action={(e) => handleGrabButton(e, element.id)}
+            style="rotate-180 border-2 border-gray-700 bg-gray-700 text-gray-400 rounded-full w-5 h-5"
+            name="^"
             id="down"
-            className="rotate-180 border-2 bg-gray-700 rounded-full w-5 h-5"
-          >
-            ^
-          </button>
-        </td>
+          />
+        </Cell>
         {Object.entries(element).map(([key, value], index) => {
           if (key !== "id")
             return (
-              <td className="p-3" key={value + index}>
-                {value}
-              </td>
+              <Cell tag="td" content={value} style="p-3" key={value + index}/>
             );
         })}
       </tr>
@@ -116,15 +116,15 @@ const Table = <T extends TableRow>({ initialData, data }: TableProps<T>) => {
 
   return (
     <div className="p-10">
-      <table className="shadow-md border-2 p-10 text-md text-center">
-        <thead className="bg-black text-white">
+      <table className="shadow-md border-2 border-separate border-spacing-1 bg-black text-md text-center rounded-t-xl">
+        <thead className="bg-black text-white border-spacing-0">
           <tr className="p-3">
-            <th className="p-3">grab</th>
+           <Cell content={`up/down`} tag="th" initialSizeH={null} initialSizeW={null} style="" />
             {tabTitle}
           </tr>
         </thead>
 
-        <tbody className="mt-2">{tabContent}</tbody>
+        <tbody className="mt-2 border-spacing-0">{tabContent}</tbody>
       </table>
     </div>
   );
