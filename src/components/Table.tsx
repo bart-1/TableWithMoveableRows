@@ -34,7 +34,7 @@ const Table = <T extends TableRow>({ initialData, data }: TableProps<T>) => {
   const tabTitle = Object.keys(data[0]).map((element, index) => {
     if (element !== "id") {
       return (
-        <Cell tag="th" content={element} key={index} style="p-3" />
+        <Cell tag="th" content={element} key={index} style="p-3" sort={()=> setList(sortTable(data)) } />
       );
     }
   });
@@ -105,10 +105,10 @@ const Table = <T extends TableRow>({ initialData, data }: TableProps<T>) => {
           />
         </Cell>
         {Object.entries(element).map(([key, value], index) => {
-          if (key !== "id")
+          if (key !== "id") {
             return (
-              <Cell tag="td" content={value} style="p-3" key={value + index}/>
-            );
+              <Cell tag="td" content={value} style={`p-3`} key={value + index}/>
+            );}
         })}
       </tr>
     );
